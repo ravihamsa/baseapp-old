@@ -6,19 +6,23 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['common/bone', '../widgets/designTab','text!../templates/pages/landing.html'], function(Base, DesignTab, template){
+define([
+    'common/bone',
+    '../widgets/designTab',
+    '../widgets/elementList',
+    '../widgets/elementProps',
+    '../widgets/formProps',
+    'text!../templates/pages/landing.html'
+], function(Base, DesignTab, ElementList, ElementProps, FormProps,  template){
 
 
     var PageView = Base.View.extend({
         template:template,
         postRender:function(){
-            var designTab = new DesignTab.View({
-                model:new DesignTab.Model()
-            })
-
-            designTab.render();
-            this.$('.design-tab').append(designTab.el);
-
+            var designTab = Base.createView(DesignTab, {parentEl:this.$('.design-tab')});
+            var elementList = Base.createView(ElementList, {parentEl:this.$('.elements-tab')});
+            var elementProps = Base.createView(ElementProps, {parentEl:this.$('.properties-tab')});
+            var formProps = Base.createView(FormProps, {parentEl:this.$('.properties-tab')});
         }
     })
 
