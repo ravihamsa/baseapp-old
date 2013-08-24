@@ -8,7 +8,6 @@ define(['common/app', 'common/bone/model'], function (app, BaseModel) {
                 func.call(_this, options);
             })
         },
-        className: 'base',
         render: function () {
             var _this = this;
             _this.beforeRender();
@@ -40,6 +39,9 @@ define(['common/app', 'common/bone/model'], function (app, BaseModel) {
         },
         getOption:function(option){
             return this.options[option];
+        },
+        actionHandler:function(){
+
         }
     });
 
@@ -116,7 +118,18 @@ define(['common/app', 'common/bone/model'], function (app, BaseModel) {
         }
     }
 
-    var setupFunctions = [bindDataEvents, setupTemplateEvents, setupStateEvents, setupAttributeWatch];
+    var setupActionNavigateAnchors =  function(){
+        var _this = this;
+        _this.$el.on('click', '.action',function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            var target = $(e.currentTarget);
+            var action = target.attr('href').substr(1);
+            _this.actionHandler.call(_this, action);
+        });
+    }
+
+    var setupFunctions = [bindDataEvents, setupTemplateEvents, setupStateEvents, setupAttributeWatch, setupActionNavigateAnchors];
 
     return BaseView;
 });

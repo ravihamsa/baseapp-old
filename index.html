@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>New App</title>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/bootstrap.css" />
     <link href="js/libs/pretty/prettify.css" type="text/css" rel="stylesheet" />
     <style type="text/css">
+
         body {
             background-color: #efefef;
         }
@@ -33,29 +35,49 @@
         .nav-pills li a {
             text-transform: uppercase;
         }
-        .element{
-            clear:both;
+
+        .element {
+            clear: both;
         }
 
-        .preview{
+        .preview {
             padding: 20px;
             border: 2px solid #e1e1e8;
             border-radius: 10px;
         }
+        .min-height{
+            min-height: 400px;
+        }
+
+        .p10{
+            padding: 10px;
+        }
+
+        .form-preview{
+            background-color: #f7f5fa;
+            border: 1px solid #c0c0c0;
+        }
+        .form-designer{
+            background-color: #efefe8;
+            border: 1px solid #c0c0c0;
+        }
+
     </style>
 </head>
 <body>
 
+<div class="container">
 
-<div class="row-fluid">
-    <div class="span12" id="header">
+    <div class="page-header">
+        <h1>App Studio
+            <small>Design your apps here</small>
+        </h1>
+    </div>
+
+    <div id="app-body">
 
     </div>
 </div>
-<div id="app-body" class="row-fluid">
-
-</div>
-
 
 <script type="text/javascript" src="js/libs/pretty/prettify.js"></script>
 <script type="text/javascript" src="js/libs/jquery-1.9.1.js"></script>

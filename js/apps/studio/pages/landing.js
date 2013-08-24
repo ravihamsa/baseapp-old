@@ -6,15 +6,19 @@
  * To change this template use File | Settings | File Templates.
  */
 
-define(['common/bone', 'text!../templates/pages/landing.html'], function(Base, template){
+define(['common/bone', '../widgets/designTab','text!../templates/pages/landing.html'], function(Base, DesignTab, template){
 
 
     var PageView = Base.View.extend({
         template:template,
-        makeItRed:function(){
-            this.$el.css({
-                'background-color':'red'
+        postRender:function(){
+            var designTab = new DesignTab.View({
+                model:new DesignTab.Model()
             })
+
+            designTab.render();
+            this.$('.design-tab').append(designTab.el);
+
         }
     })
 
