@@ -32,38 +32,6 @@
         },
 
         {
-            name: 'apps/publisher',
-            include: [
-                'apps/publisher/app'
-            ],
-            exclude: ['common']
-        },
-
-        {
-            name: 'apps/analyze',
-            include: [
-                'apps/analyze/app'
-            ],
-            exclude: ['common']
-        },
-
-        {
-            name: 'apps/properties',
-            include: [
-                'apps/properties/app'
-            ],
-            exclude: ['common']
-        },
-
-        {
-            name: 'apps/funds',
-            include: [
-                'apps/funds/app'
-            ],
-            exclude: ['common']
-        },
-
-        {
             name: 'apps/examples',
             include: [
                 'apps/examples/app'
