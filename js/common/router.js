@@ -15,7 +15,7 @@ define(function (require) {
         index: function () {
 
             require(['common/app'],function(app){
-                app.router.navigate('/advertiser/dashboard/', {trigger: true});
+                app.router.navigate('/examples/form/', {trigger: true});
             });
 
         },
