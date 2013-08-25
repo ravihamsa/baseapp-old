@@ -1,3 +1,9 @@
 <div>
-    {{stringify this}}
+    {{#if elementModel}}
+        <div class="form-container">
+            Form Container {{stringify this}}
+        </div>
+    {{else}}
+    Select Element from Left
+    {{/if}}
 </div>

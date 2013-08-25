@@ -1,11 +1,5 @@
 define(['common/bone', 'common/list/singleSelect', 'text!../templates/widgets/formDesigner.html'], function(Base, SingleSelect, template){
 
-
-    var ElementItemView = Base.View.extend({
-        tagName:'li',
-        template:'<a href="#{{id}}" class="action {{toggleClass "selected" "active"}}">{{name}} {{selected}}</a>'
-    });
-
     var View =  SingleSelect.View.extend({
         template:template,
         postRender:function(){

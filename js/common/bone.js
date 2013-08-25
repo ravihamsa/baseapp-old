@@ -26,6 +26,9 @@ define(function (require) {
 
                 //if parentEl
                 if (config.parentEl) {
+                    if(config.replaceHTML){
+                        config.parentEl.empty();
+                    }
                     view.$el.appendTo(config.parentEl);
                 }
             }

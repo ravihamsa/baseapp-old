@@ -98,7 +98,7 @@ define([
 
 
             formDesignerModel.on('change:selectedItem',function(model, selectedModel){
-                elementProps.model.set(selectedModel.toJSON());
+                elementProps.model.set('elementModel',selectedModel);
                 tabModel.setSelectedById('fldProperties');
             })
 
