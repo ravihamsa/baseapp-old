@@ -88,7 +88,7 @@ define([
             var counter = 0;
             elementCollection.on('elementDropped',function(data){
                 var obj = {
-                    id:counter++,
+                    id:''+counter++,
                     name:data.name+' '+counter,
                     type:data.id
                 }
@@ -96,6 +96,11 @@ define([
 
             });
 
+
+            formDesignerModel.on('change:selectedItem',function(model, selectedModel){
+                elementProps.model.set(selectedModel.toJSON());
+                tabModel.setSelectedById('fldProperties');
+            })
 
         }
     })

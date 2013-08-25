@@ -87,6 +87,7 @@ define(['common/bone'], function (Bone) {
             if(!selected){
                 selected = curItem;
                 curItem.select();
+                updateSelected();
                 return;
             }
             if(curItem.id === selected.id){
