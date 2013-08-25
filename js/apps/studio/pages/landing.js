@@ -8,21 +8,43 @@
 
 define([
     'common/bone',
-    '../widgets/designTab',
+    'common/widgets/tab',
+    'common/list/singleSelect',
     '../widgets/elementList',
     '../widgets/elementProps',
     '../widgets/formProps',
     'text!../templates/pages/landing.html'
-], function (Base, DesignTab, ElementList, ElementProps, FormProps, template) {
+], function (Base, Tab, SingleSelect, ElementList, ElementProps, FormProps, template) {
 
 
     var PageView = Base.View.extend({
         template: template,
         postRender: function () {
-            var designTab = Base.createView({View: DesignTab.View, Model: DesignTab.Model, parentEl: this.$('.design-tab')});
-            var elementList = Base.createView({View: ElementList.View, Model: ElementList.Model, parentEl: this.$('.elements-tab')});
-            var elementProps = Base.createView({View: ElementProps.View, Model: ElementProps.Model, parentEl: this.$('.properties-tab')});
-            var formProps = Base.createView({View: FormProps.View, Model: FormProps.Model, parentEl: this.$('.properties-tab')});
+            var tabList = [
+                {
+                    id:'addFields',
+                    name:'Add Fields',
+                    selected:true
+                },
+                {
+                    id:'fldProperties',
+                    name:'Field Properties'
+                },
+                {
+                    id:'formSettings',
+                    name:'Form Settings'
+                }
+            ]
+
+            var tabModel = new Tab.Model({
+                items: new SingleSelect.ItemCollection(tabList)
+            })
+            var tab = Base.createView({View: Tab.View, model: tabModel, el: this.$('.design-tab')});
+
+            var elementList = Base.createView({View: ElementList.View, Model: ElementList.Model, parentEl: tab.$('.tab-list .addFields')});
+            var elementProps = Base.createView({View: ElementProps.View, Model: ElementProps.Model, parentEl: tab.$('.tab-list .fldProperties')});
+            var formProps = Base.createView({View: FormProps.View, Model: FormProps.Model, parentEl: tab.$('tab-list .formSettings')});
+
         }
     })
 

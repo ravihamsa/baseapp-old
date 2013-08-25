@@ -6,7 +6,7 @@ define(['common/app', './view', './itemView'], function (app, BaseView, BaseItem
             var ItemView = this.getOption('itemView') || BaseItemView
             var fragment = document.createDocumentFragment();
             this.collection.each(function (model) {
-                fragment.appendChild(new ItemView({model: model}).render().el)
+                fragment.appendChild(new ItemView({model: model, className:model.id}).render().el)
             }, this)
             this.$el.append(fragment);
         },

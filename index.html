@@ -8,9 +8,6 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <style type="text/css">
 
-        body {
-            background-color: #efefef;
-        }
 
         #header {
             background-color: #000;
@@ -18,7 +15,6 @@
         }
 
         .logo {
-            background: url("images/logo.png") no-repeat center center;
             width: 100px;
             height: 30px;
             display: inline-block;
@@ -54,17 +50,49 @@
             padding: 10px;
         }
 
-        .form-preview{
-            background-color: #f7f5fa;
-            border: 1px solid #c0c0c0;
-        }
-        .form-designer{
-            background-color: #efefe8;
-            border: 1px solid #c0c0c0;
-        }
-
         body{
             font-family: 'Open Sans', sans-serif;
+        }
+        .border1 {
+            border:1px solid #d0d1d1;
+        }
+
+        ul.inline-block-list {
+            display: block;
+            background-color: #cdcdcd;
+            padding: 0;
+        }
+        .inline-block-list li {
+            display: inline-block;
+        }
+        .inline-block-list li.active a{
+            border:1px solid #999;
+            border-bottom-color:transparent;
+        }
+
+        .inline-block-list li.active {
+            background-color: #fff;
+            text-decoration: none;
+        }
+
+        a:focus,a:hover {
+            outline: 0;
+            text-decoration: none;
+        }
+
+        .inline-block-list li a {
+            color:#666;
+            font-weight: bold;
+            line-height: 40px;
+            display: block;
+            height: 40px;
+            padding: 0 15px;
+            border-right: 1px solid #fff;
+            border-left:1px solid #d0d1d1;
+        }
+
+        .form-preview {
+            border-right: 1px solid #d0d1d1;
         }
     </style>
 

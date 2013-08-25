@@ -8,9 +8,9 @@ define(['common/app'],function(app){
         return JSON.stringify(obj)
     });
 
-    Handlebars.registerHelper('toggleClass', function(attributeName) {
+    Handlebars.registerHelper('toggleClass', function(attributeName, className) {
         if(this[attributeName]){
-            return attributeName;
+            return className || attributeName;
         }
     });
 

@@ -100,11 +100,28 @@ define(['common/app', 'common/bone/model'], function (app, BaseModel) {
         var model = _this.model;
         if(model){
             model.on('change', _.bind(watchAttributes, _this));
+            syncAttributes.call(_this, model)
         }
+
     }
 
     var watchAttributes = function (model) {
         var changes = model.changedAttributes();
+        _.each(changes, function (value, attribute) {
+            var handler = this[attribute + 'ChangeHandler'];
+            if (handler && typeof handler === 'function') {
+                handler.call(this, value);
+            }
+        }, this);
+
+        var changeHandler = this.changeHandler;
+        if(changeHandler && typeof changeHandler === 'function'){
+            changeHandler.call(this, changes);
+        }
+    }
+
+    var syncAttributes = function (model) {
+        var changes = model.toJSON();
         _.each(changes, function (value, attribute) {
             var handler = this[attribute + 'ChangeHandler'];
             if (handler && typeof handler === 'function') {
