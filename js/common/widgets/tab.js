@@ -14,7 +14,6 @@ define([
         })
 
         var TabItemView = Base.View.extend({
-            template:'{{name}}',
             changeHandler:function(){
                 this.$el.toggle(this.model.is('selected'));
             }

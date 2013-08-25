@@ -91,9 +91,36 @@
             border-left:1px solid #d0d1d1;
         }
 
-        .form-preview {
+        .form-element-list {
             border-right: 1px solid #d0d1d1;
         }
+
+        .selected-list ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .selected-list li a {
+            display: block;
+            padding: 20px;
+            background-color: #ebebeb;
+            box-shadow:0 0 20px #FFFFFF inset;
+            margin-bottom: 1px;
+        }
+        .selected-list li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .element-list li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+
     </style>
 
 </head>
@@ -118,6 +145,7 @@
 <script type="text/javascript" src="js/libs/backbone.js"></script>
 <script type="text/javascript" src="js/libs/md5-min.js"></script>
 <script type="text/javascript" src="js/libs/handlebars.js"></script>
+<script type="text/javascript" src="js/libs/TweenMax.js"></script>
 <script type="text/javascript" src="js/libs/require-min.js" data-main="js/common.js"></script>
 
 </body>
