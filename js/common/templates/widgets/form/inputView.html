@@ -1,10 +1,7 @@
-<div class="control-group">
-    <label class="control-label">
-        {{elementLabel this}}
-    </label>
-
-    <div class="controls">
-        <input type="{{type}}" name="{{name}}" value="{{value}}" class="el-{{name}}"/>
-        <span class="help-inline"></span>
+<div class="form-group">
+    <label class="col-lg-2 control-label"> {{elementLabel this}} </label>
+    <div class="col-lg-5">
+        <input type="{{type}}" name="{{name}}" value="{{value}}" class="el-{{name}} form-control"  />
     </div>
+    <span class="help-inline"></span>
 </div>

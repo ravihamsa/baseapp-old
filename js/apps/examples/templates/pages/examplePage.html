@@ -1,7 +1,7 @@
 <div>
     <style type="text/css">
             /* Base class */
-        .bs-docs-demo, .bs-docs-code {
+        .bs-docs-demo, .bs-docs-code,.bs-docs-output {
             position: relative;
             margin: 15px 0;
             padding: 39px 19px 14px;
@@ -14,7 +14,7 @@
         }
 
             /* Echo out a label for the example */
-        .bs-docs-demo:after, .bs-docs-code:after {
+        .bs-docs-demo:after, .bs-docs-code:after, .bs-docs-output:after {
             content: "Demo";
             position: absolute;
             top: -1px;
@@ -34,6 +34,10 @@
             content:"Code"
         }
 
+        .bs-docs-output:after {
+            content:'Console'
+        }
+
         pre.prettyprint {
             margin: 0;
             padding: 0;
@@ -41,11 +45,11 @@
             background-color: transparent;
         }
 
-        .preview .key {
+        .preview .key, .output .key {
             color:#660066
         }
 
-        .preview .string {
+        .preview .string, .output .string {
             color:#008800
         }
     </style>

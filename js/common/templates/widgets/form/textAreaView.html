@@ -1,10 +1,7 @@
-<div class="control-group">
-    <label class="control-label">
-        {{elementLabel this}}
-    </label>
-
-    <div class="controls">
-        <textarea type="{{type}}" name="{{name}}" class="el-{{name}}">{{value}}</textarea>
-        <span class="help-inline"></span>
+<div class="form-group">
+    <label class="col-lg-2 control-label"> {{elementLabel this}} </label>
+    <div class="col-lg-5">
+        <textarea type="{{type}}" name="{{name}}" class="el-{{name}} form-control">{{value}}</textarea>
     </div>
+    <span class="help-inline"></span>
 </div>

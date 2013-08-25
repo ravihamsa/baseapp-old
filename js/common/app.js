@@ -34,7 +34,7 @@ define(['require','common/router'], function (require, Router) {
                         });
                     } else
                     //if template is an id of script element in html page
-                    if (template.indexOf('#') !== -1) {
+                    if (template.indexOf('#') === 0) {
                         def.resolve(_this.compileTemplate($(template).html()));
                     } else {
                         //if template is a template string

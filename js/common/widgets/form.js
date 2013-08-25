@@ -13,13 +13,24 @@ define([
     'text!../templates/widgets/form/checkListView.html',
     'text!../templates/widgets/form/radioListView.html',
     'text!../templates/widgets/form/selectView.html',
-    'text!../templates/widgets/form/textAreaView.html'
-],function(app, Base, Element, MessageStack, checkListTemplate, radioListTemplate, selectViewTemplate, textAreaTemplate){
+    'text!../templates/widgets/form/textAreaView.html',
+    'text!../templates/widgets/form/buttonView.html'
+],function(app, Base, Element, MessageStack, checkListTemplate, radioListTemplate, selectViewTemplate, textAreaTemplate, buttonViewTemplate){
     "use strict";
 
     var ElementView = Element.View;
     var ElementModel = Element.Model;
     var ElementCollection = Element.Collection;
+
+    var ButtonView = ElementView.extend({
+        template:buttonViewTemplate,
+        valueFunction: function () {
+            return;
+        },
+        valueChangeHandler: function (value) {
+            return;
+        }
+    });
 
     var CheckboxView = ElementView.extend({
         valueFunction: function () {
@@ -143,6 +154,7 @@ define([
         'checkList': CheckListView,
         'hidden':HiddenView,
         'json':HiddenJSONView,
+        'submit':ButtonView,
         'container':ContainerView
     };
 
@@ -328,7 +340,7 @@ define([
                 dataObj = this.options.prePostParser(dataObj);
             }
 
-            console.log(dataObj);
+            this.trigger('formSubmit', dataObj);
         },
         addToTypeViewIndex: function (type, View) {
             this.typeViewIndex[type] = View;

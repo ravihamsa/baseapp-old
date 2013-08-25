@@ -122,10 +122,9 @@ define(['common/app', 'common/bone/model'], function (app, BaseModel) {
         var _this = this;
         _this.$el.on('click', '.action',function(e){
             e.preventDefault();
-            e.stopPropagation();
             var target = $(e.currentTarget);
             var action = target.attr('href').substr(1);
-            _this.actionHandler.call(_this, action);
+            _this['actionHandler'].call(_this, action);
         });
     }
 

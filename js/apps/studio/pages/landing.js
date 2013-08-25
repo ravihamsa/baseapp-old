@@ -13,16 +13,16 @@ define([
     '../widgets/elementProps',
     '../widgets/formProps',
     'text!../templates/pages/landing.html'
-], function(Base, DesignTab, ElementList, ElementProps, FormProps,  template){
+], function (Base, DesignTab, ElementList, ElementProps, FormProps, template) {
 
 
     var PageView = Base.View.extend({
-        template:template,
-        postRender:function(){
-            var designTab = Base.createView(DesignTab, {parentEl:this.$('.design-tab')});
-            var elementList = Base.createView(ElementList, {parentEl:this.$('.elements-tab')});
-            var elementProps = Base.createView(ElementProps, {parentEl:this.$('.properties-tab')});
-            var formProps = Base.createView(FormProps, {parentEl:this.$('.properties-tab')});
+        template: template,
+        postRender: function () {
+            var designTab = Base.createView({View: DesignTab.View, Model: DesignTab.Model, parentEl: this.$('.design-tab')});
+            var elementList = Base.createView({View: ElementList.View, Model: ElementList.Model, parentEl: this.$('.elements-tab')});
+            var elementProps = Base.createView({View: ElementProps.View, Model: ElementProps.Model, parentEl: this.$('.properties-tab')});
+            var formProps = Base.createView({View: FormProps.View, Model: FormProps.Model, parentEl: this.$('.properties-tab')});
         }
     })
 
@@ -31,8 +31,8 @@ define([
     });
 
     return {
-        Model:PageModel,
-        View:PageView
+        Model: PageModel,
+        View: PageView
     }
 
 })

@@ -33,7 +33,7 @@ define(['common/app', 'common/bone', 'common/widgets/form', './examplePage'], fu
     })
 
 
-    function simpleForm(previewEl) {
+    function simpleForm(previewEl, consoleEl) {
         //simple form
         var coll = new Form.ElementCollection([
             {name: 'userName'},
@@ -66,9 +66,13 @@ define(['common/app', 'common/bone', 'common/widgets/form', './examplePage'], fu
         //ends here
 
         previewEl.html(form.el);
+
+        form.on('formSubmit', function(formData){
+            consoleEl.html(ExamplePage.syntaxHighlight(formData));
+        })
     }
 
-    function simpleFormWithActiveRules(previewEl) {
+    function simpleFormWithActiveRules(previewEl, consoleEl) {
 
         //simple form with activeRules
         var coll = new Form.ElementCollection([
@@ -109,9 +113,13 @@ define(['common/app', 'common/bone', 'common/widgets/form', './examplePage'], fu
 
         //end here
         previewEl.html(form.el);
+
+        form.on('formSubmit', function(formData){
+            consoleEl.html(ExamplePage.syntaxHighlight(formData));
+        })
     }
 
-    function formWithValidation(previewEl) {
+    function formWithValidation(previewEl, consoleEl) {
 
         //simple form with validationRules
         var coll = new Form.ElementCollection([
@@ -140,10 +148,14 @@ define(['common/app', 'common/bone', 'common/widgets/form', './examplePage'], fu
 
         //ends here
         previewEl.html(form.el);
+
+        form.on('formSubmit', function(formData){
+            consoleEl.html(ExamplePage.syntaxHighlight(formData));
+        })
     }
 
 
-    function formWithCustomElement(previewEl) {
+    function formWithCustomElement(previewEl, consoleEl) {
 
         //
 
@@ -236,6 +248,10 @@ define(['common/app', 'common/bone', 'common/widgets/form', './examplePage'], fu
 
         //ends here
         previewEl.html(form.el);
+
+        form.on('formSubmit', function(formData){
+            consoleEl.html(ExamplePage.syntaxHighlight(formData));
+        })
     }
 
     var PageModel = Base.Model.extend({

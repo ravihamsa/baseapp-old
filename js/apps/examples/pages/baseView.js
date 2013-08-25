@@ -79,12 +79,12 @@ define(['common/bone', './examplePage'], function(Base, ExamplePage){
         previewEl.html(view.el);
     }
 
-    function autoWiredChangeListeners(previewEl){
+    function autoWiredChangeListeners(previewEl, consoleEl){
         //
 
 
         var MyView = Base.View.extend({
-            template:'<div> <button class="btn but1 btn-primary">Change Attribute 1</button> <button class="btn but2 btn-primary">Change Attribute 2</button> </div> <pre class="output"></pre> ',
+            template:'<div> <button class="btn but1 btn-primary">Change Attribute 1</button> <button class="btn but2 btn-primary">Change Attribute 2</button> </div>',
             events:{
                 'click .but1':'but1ClickHandler',
                 'click .but2':'but2ClickHandler'
@@ -104,7 +104,7 @@ define(['common/bone', './examplePage'], function(Base, ExamplePage){
                 this.printOutJSON();
             },
             printOutJSON:function(){
-                this.$('.output').html(syntaxHighlight(this.model.toJSON()));
+                consoleEl.html(ExamplePage.syntaxHighlight(this.model.toJSON()));
             }
         })
         var model = new Base.Model({
@@ -124,12 +124,12 @@ define(['common/bone', './examplePage'], function(Base, ExamplePage){
     }
 
 
-    function dataEvents(previewEl){
+    function dataEvents(previewEl, consoleEl){
         //
 
 
         var MyView = Base.View.extend({
-            template:'<div> <button class="btn but1 btn-primary">Change Attribute 1</button> <button class="btn but2 btn-primary">Change Attribute 2</button> </div> <pre class="output"></pre> ',
+            template:'<div> <button class="btn but1 btn-primary">Change Attribute 1</button> <button class="btn but2 btn-primary">Change Attribute 2</button> </div>',
             events:{
                 'click .but1':'but1ClickHandler',
                 'click .but2':'but2ClickHandler'
@@ -146,7 +146,7 @@ define(['common/bone', './examplePage'], function(Base, ExamplePage){
                 this.model.set('attribute2',new Date().toTimeString());
             },
             printOutJSON:function(){
-                this.$('.output').html(syntaxHighlight(this.model.toJSON()));
+                consoleEl.html(ExamplePage.syntaxHighlight(this.model.toJSON()));
             }
         })
         var model = new Base.Model({
@@ -169,27 +169,7 @@ define(['common/bone', './examplePage'], function(Base, ExamplePage){
 
     });
 
-    function syntaxHighlight(json) {
-        if (typeof json != 'string') {
-            json = JSON.stringify(json, undefined, 2);
-        }
-        json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-            var cls = 'number';
-            if (/^"/.test(match)) {
-                if (/:$/.test(match)) {
-                    cls = 'key';
-                } else {
-                    cls = 'string';
-                }
-            } else if (/true|false/.test(match)) {
-                cls = 'boolean';
-            } else if (/null/.test(match)) {
-                cls = 'null';
-            }
-            return '<span class="' + cls + '">' + match + '</span>';
-        });
-    }
+
 
     return {
         Model:PageModel,
