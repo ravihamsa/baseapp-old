@@ -1,0 +1,104 @@
+body {
+  font-family: Calibri;
+  color: #333333;
+}
+a {
+  text-decoration: none;
+  color: #666;
+}
+.t-right {
+  text-align: right;
+}
+.pv10 {
+  padding: 10px 0;
+}
+.p10 {
+  padding: 10px;
+}
+.v-middle {
+  vertical-align: middle;
+}
+.e-border {
+  position: relative;
+}
+.e-border:after {
+  border: 1px solid #FFFFFF;
+  bottom: 0;
+  content: " ";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+.e-border.b-top:after {
+  border-width: 1px 0 0 0;
+}
+.e-border.b-right:after {
+  border-width: 0 1px 0 0;
+}
+.e-border.b-bottom:after {
+  border-width: 0 0 1px 0;
+}
+.e-border.b-left:after {
+  border-width: 0 0 0 1px;
+}
+.layout-container {
+  min-width: 1220px;
+}
+.layout-box {
+  width: 1200px;
+  margin: 0 auto;
+}
+.ib-list {
+  display: block;
+}
+.ib-list li {
+  display: inline-block;
+}
+.ib-list li a {
+  display: block;
+  padding: 10px;
+}
+.powered-by {
+  background-color: #666666;
+  box-shadow: 0 -2px 3px 0 #000000 inset;
+  vertical-align: middle;
+  color: #fff;
+  text-align: right;
+  line-height: 20px;
+  font-size: 16px;
+  padding: 10px;
+  font-weight: bold;
+}
+.powered-by strong {
+  font-size: 20px;
+  font-weight: bold;
+}
+.company-header {
+  background-color: #f8f8f8;
+  color: #666;
+}
+.company-header a.user {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+.company-header a {
+  color: #666;
+}
+.company-header .logo {
+  background: url("../images/logo.png");
+  display: block;
+  width: 259px;
+  height: 95px;
+}
+.page-nav {
+  background-color: #e3e3e3;
+  border: 1px solid #cccccd;
+  text-shadow: 1px 1px 0 #fff;
+  font-weight: bold;
+}
+.page-nav li {
+  border-right: 1px solid #cccccd;
+}
