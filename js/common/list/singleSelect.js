@@ -1,10 +1,12 @@
 define(['common/bone'], function (Bone) {
 
+    var baseUtil =  Bone.util;
+
     var View = Bone.View.extend({
         template:'<div class="list-view"></div>',
         postRender:function(){
             var items = this.model.get('items');
-            var listView = Bone.createCollectionView({
+            var listView = baseUtil.createView({
                 View:Bone.CollectionView,
                 collection:items,
                 parentEl:this.$('.list-view'),

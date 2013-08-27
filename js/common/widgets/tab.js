@@ -5,6 +5,8 @@ define([
     ],
     function(app, Base, SingleSelect){
 
+        var baseUtil =  Base.util;
+
         var NavItemView = Base.View.extend({
             tagName:'li',
             template:'<a href="#{{id}}" class="action">{{name}}</a>',
@@ -23,14 +25,14 @@ define([
             template:'<ul class="inline-block-list"></ul><div class="tab-list p10"></div> ',
             postRender:function(){
                 var items = this.model.get('items');
-                var navListView = Base.createCollectionView({
+                var navListView = baseUtil.createView({
                     View:Base.CollectionView,
                     collection:items,
                     el:this.$('.inline-block-list'),
                     itemView:NavItemView
                 })
 
-                var tabListView = Base.createCollectionView({
+                var tabListView = baseUtil.createView({
                     View:Base.CollectionView,
                     tagName:'div',
                     collection:items,

@@ -1,5 +1,7 @@
 define(['common/bone', 'text!../templates/widgets/elementList.html'], function (Base, template) {
 
+    var baseUtil = Base.util;
+
     var ElementItemView = Base.View.extend({
         tagName:'li',
         template:'<button class="btn element">{{name}}</button>',
@@ -89,7 +91,7 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
         },
         postRender:function(){
             var items = this.model.get('items');
-            var listView = Base.createCollectionView({
+            var listView = baseUtil.createView({
                 View:Base.CollectionView,
                 collection:items,
                 parentEl:this.$('.element-list'),

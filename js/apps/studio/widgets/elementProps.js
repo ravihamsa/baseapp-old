@@ -1,4 +1,6 @@
 define(['common/bone', 'common/widgets/form', 'text!../templates/widgets/elementProps.html'], function (Base, Form, template) {
+    var baseUtil = Base.util;
+
     var View = Base.View.extend({
         template: template,
         changeHandler: function () {
@@ -43,7 +45,7 @@ define(['common/bone', 'common/widgets/form', 'text!../templates/widgets/element
                 elements: coll
             });
 
-            var form = Base.createView({
+            var form = baseUtil.createView({
                 View:Form.View,
                 model:formModel,
                 parentEl:this.$('.form-container'),

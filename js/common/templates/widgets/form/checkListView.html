@@ -1,17 +1,14 @@
-<div class="form-group">
-    <label class="col-lg-2 control-label"> {{elementLabel this}} </label>
+<div class="control-group">
+    <label class="control-label">
+        {{elementLabel this}}
+    </label>
 
-    <div class="col-lg-5 form-inline">
+    <div class="controls">
         {{#each options}}
-        <div class="checkbox">
-            <label>
-
-                <input type="checkbox" name="{{id}}" value="{{id}}" class="el-{{name}}" />
-                {{name}}
-
-            </label>
-        </div>
+        <label class="checkbox inline">
+            <input type="checkbox" name="{{id}}" value="{{id}}" class="el-{{name}}"/>{{name}}
+        </label>
         {{/each}}
+        <span class="help-inline"></span>
     </div>
-    <span class="help-inline"></span>
 </div>

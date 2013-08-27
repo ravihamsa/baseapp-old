@@ -23,6 +23,14 @@ define(['common/bone', './examplePage'], function(Base, ExamplePage){
                 title:'URL Template'
             },
             {
+              func:setTemplate,
+              title:'Dynamic Templates'
+            },
+            {
+              func:statedView,
+              title:'Stated Views'
+            },
+            {
                 func:autoWiredChangeListeners,
                 title:'Auto wired model change listeners',
                 desc:'Methods of view defined in pattern [attributeName]ChangeHandler will get called every time attribute is changed. No need of add listeners for the same'
@@ -31,6 +39,10 @@ define(['common/bone', './examplePage'], function(Base, ExamplePage){
                 func:dataEvents,
                 title:'DataEvents',
                 desc:'Use events like hash to listen for events for model / collection defined in view'
+            },
+            {
+                func:baseViewWithSubViews,
+                title:'Base View with Sub Views'
             }
         ]
     })
@@ -164,6 +176,142 @@ define(['common/bone', './examplePage'], function(Base, ExamplePage){
         previewEl.html(view.el);
 
     }
+
+
+    function baseViewWithSubViews(previewEl, consoleEl){
+        //
+
+        var model = new Base.Model({
+            attribute1:'value1',
+            attribute2:'value2'
+        })
+
+        var view = new Base.View({
+            template:'<div>this is parent view <div class="subview-container" style="margin:0 10px; border: 1px solid #ccc; padding: 5px;"></div></div>',
+            views:{
+                subView1:{
+                    View:Base.View,
+                    model:model,
+                    template:'this is subview 1 {{stringify this}}',
+                    parentEl:'.subview-container',
+                    renderOnChange:true
+                },
+                subView2:{
+                    View:Base.View,
+                    model:model,
+                    template:'this is subview 2  {{stringify this}}',
+                    parentEl:'.subview-container',
+                    renderOnChange:true
+                },
+                subView3:{
+                    View:Base.View,
+                    model:model,
+                    template:'this is subview 3 {{stringify this}}',
+                    parentEl:'.subview-container',
+                    renderOnChange:true
+                }
+            }
+        })
+
+        view.render();
+
+        view.getSubView('subView2').setTemplate('this is new updated template for subview 2');
+
+        //
+
+        previewEl.html(view.el);
+
+        $('<button class="btn">Change Attribute 1</button>').on('click', function(){
+            model.set('attribute1', new Date().toTimeString());
+        }).appendTo(previewEl);
+
+        $('<button class="btn">Change Attribute 2</button>').on('click', function(){
+            model.set('attribute2', new Date().toTimeString());
+        }).appendTo(previewEl);
+
+
+    }
+
+
+    function setTemplate (previewEl, consoleEl){
+        //
+        var clock = new Base.View({
+            template:'Current Time is: '+new Date().toTimeString()
+        })
+
+        var interval;
+
+        var startClock = function(){
+            interval = setInterval(function(){
+                clock.setTemplate('Current Time is: '+new Date().toTimeString())
+            },10)
+        }
+
+        var stopClock = function(){
+            clearInterval(interval);
+        }
+
+
+        clock.render();
+
+
+        //
+
+        previewEl.html(clock.el);
+
+        $('<br/>').appendTo(previewEl);
+
+        $('<button class="btn">startClock()</button>').on('click', function(){
+            startClock();
+        }).appendTo(previewEl);
+
+        $('<button class="btn">stopClock()</button>').on('click', function(){
+            stopClock();
+        }).appendTo(previewEl);
+    }
+
+
+
+    function statedView (previewEl, consoleEl){
+        //
+
+        var RedView = Base.View.extend({
+            template:'<div style="background-color: red">this is red view</div> '
+        })
+
+        var GreenView = Base.View.extend({
+            template:'<div style="background-color: green">this is green view</div> '
+        })
+
+        var statedView = new Base.View({
+            template:'<div class="state-view"></div>',
+            states:{  // if you skip this view will not have setState functionality
+                'red':RedView,  //first view would be picked unless you specify state option
+                'green':GreenView
+            }
+        })
+
+
+        statedView.render();
+
+
+        //
+
+        previewEl.html(statedView.el);
+
+        $('<br/>').appendTo(previewEl);
+
+        $('<button class="btn">statedView.setState("green")</button>').on('click', function(){
+            statedView.setState('green')
+        }).appendTo(previewEl);
+
+        $('<button class="btn">statedView.setState("red")</button>').on('click', function(){
+            statedView.setState('red')
+        }).appendTo(previewEl);
+    }
+
+
+
 
     var PageModel = Base.Model.extend({
 

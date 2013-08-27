@@ -17,6 +17,7 @@ define([
     'text!../templates/pages/landing.html'
 ], function (Base, Tab, SingleSelect, ElementList, ElementProps, FormProps, FormDesigner,  template) {
 
+    var baseUtil =  Base.util;
 
     var PageView = Base.View.extend({
         template: template,
@@ -64,16 +65,16 @@ define([
             var tabModel = new Tab.Model({
                 items: new SingleSelect.ItemCollection(tabList)
             })
-            var tab = Base.createView({View: Tab.View, model: tabModel, el: this.$('.design-tab')});
+            var tab = baseUtil.createView({View: Tab.View, model: tabModel, el: this.$('.design-tab')});
 
             var elementCollection = new SingleSelect.ItemCollection(elementTypeList)
             var elementListModel = new ElementList.Model({
                 items: elementCollection
             })
 
-            var elementList = Base.createView({View: ElementList.View, model:elementListModel, parentEl: tab.$('.tab-list .id-addFields')});
-            var elementProps = Base.createView({View: ElementProps.View, Model: ElementProps.Model, parentEl: tab.$('.tab-list .id-fldProperties')});
-            var formProps = Base.createView({View: FormProps.View, Model: FormProps.Model, parentEl: tab.$('.tab-list .id-formSettings')});
+            var elementList = baseUtil.createView({View: ElementList.View, model:elementListModel, parentEl: tab.$('.tab-list .id-addFields')});
+            var elementProps = baseUtil.createView({View: ElementProps.View, Model: ElementProps.Model, parentEl: tab.$('.tab-list .id-fldProperties')});
+            var formProps = baseUtil.createView({View: FormProps.View, Model: FormProps.Model, parentEl: tab.$('.tab-list .id-formSettings')});
 
 
 
@@ -83,7 +84,7 @@ define([
                 items:formElementsCollection
             });
 
-            var formDesigner = Base.createView({View: FormDesigner.View, model: formDesignerModel, parentEl: this.$('.form-element-list')});
+            var formDesigner = baseUtil.createView({View: FormDesigner.View, model: formDesignerModel, parentEl: this.$('.form-element-list')});
 
             var counter = 0;
             elementCollection.on('elementDropped',function(data){

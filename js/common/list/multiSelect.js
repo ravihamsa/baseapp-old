@@ -37,6 +37,19 @@ define(['common/bone', 'common/list/singleSelect'], function (Bone, SingleSelect
             updateSelected();
         }
 
+        _this.selectAll = function(){
+            coll.each(function(model){
+                model.select();
+            })
+            updateSelected();
+        }
+
+        _this.selectNone = function(){
+            coll.each(function(model){
+                model.deselect();
+            })
+            updateSelected();
+        }
         var updateSelected = function(){
             selected = coll.where({selected: true});
             _this.set('selectedCount', selected.length);
