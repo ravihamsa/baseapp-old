@@ -52,10 +52,6 @@ define([
                     name: 'Number'
                 },
                 {
-                    id: 'email',
-                    name: 'Email'
-                },
-                {
                     id: 'dropdown',
                     name: 'Drop Down'
                 }
@@ -65,16 +61,16 @@ define([
             var tabModel = new Tab.Model({
                 items: new SingleSelect.ItemCollection(tabList)
             })
-            var tab = baseUtil.createView({View: Tab.View, model: tabModel, el: this.$('.design-tab')});
+            var tab = baseUtil.createView({View: Tab.View, model: tabModel, el: this.$('.prop-stack')});
 
             var elementCollection = new SingleSelect.ItemCollection(elementTypeList)
             var elementListModel = new ElementList.Model({
                 items: elementCollection
             })
 
-            var elementList = baseUtil.createView({View: ElementList.View, model:elementListModel, parentEl: tab.$('.tab-list .id-addFields')});
-            var elementProps = baseUtil.createView({View: ElementProps.View, Model: ElementProps.Model, parentEl: tab.$('.tab-list .id-fldProperties')});
-            var formProps = baseUtil.createView({View: FormProps.View, Model: FormProps.Model, parentEl: tab.$('.tab-list .id-formSettings')});
+            var elementList = baseUtil.createView({View: ElementList.View, model:elementListModel, parentEl: tab.$('.tab-panes .id-addFields')});
+            var elementProps = baseUtil.createView({View: ElementProps.View, Model: ElementProps.Model, parentEl: tab.$('.tab-panes .id-fldProperties')});
+            var formProps = baseUtil.createView({View: FormProps.View, Model: FormProps.Model, parentEl: tab.$('.tab-panes .id-formSettings')});
 
 
 
@@ -84,16 +80,18 @@ define([
                 items:formElementsCollection
             });
 
-            var formDesigner = baseUtil.createView({View: FormDesigner.View, model: formDesignerModel, parentEl: this.$('.form-element-list')});
+            var formDesigner = baseUtil.createView({View: FormDesigner.View, model: formDesignerModel, parentEl: this.$('.sel-el-list')});
 
             var counter = 0;
-            elementCollection.on('elementDropped',function(data){
+            elementCollection.on('elementDropped',function(model){
+                var data =  model.toJSON();
                 var obj = {
                     id:''+counter++,
-                    name:data.name+' '+counter,
+                    name:'Field Label '+counter,
                     type:data.id
                 }
                 formElementsCollection.add(obj);
+                formDesignerModel.setSelectedById(obj.id);
 
             });
 
@@ -102,6 +100,11 @@ define([
                 elementProps.model.set('elementModel',selectedModel);
                 tabModel.setSelectedById('fldProperties');
             })
+
+            formElementsCollection.on('change:type',function(model, value){
+                elementProps.model.set('elementModel',model);
+                elementProps.render();
+            });
 
         }
     })

@@ -5,7 +5,7 @@ define([
     ],
     function(app, Base, SingleSelect){
 
-        var baseUtil =  Bone.util;
+        var baseUtil =  Base.util;
 
         var NavItemView = Base.View.extend({
             tagName:'li',
@@ -22,13 +22,13 @@ define([
         })
 
         var View = SingleSelect.View.extend({
-            template:'<ul class="inline-block-list"></ul><div class="tab-list p10"></div> ',
+            template:'<div class="prop-tabs"><ul class="ib-list"></ul></div><div class="tab-panes"></div> ',
             postRender:function(){
                 var items = this.model.get('items');
                 var navListView = baseUtil.createView({
                     View:Base.CollectionView,
                     collection:items,
-                    el:this.$('.inline-block-list'),
+                    el:this.$('.ib-list'),
                     itemView:NavItemView
                 })
 
@@ -36,7 +36,7 @@ define([
                     View:Base.CollectionView,
                     tagName:'div',
                     collection:items,
-                    el:this.$('.tab-list'),
+                    el:this.$('.tab-panes'),
                     itemView:TabItemView
                 })
             },

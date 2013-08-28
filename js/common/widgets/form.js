@@ -58,7 +58,11 @@ define([
         template: selectViewTemplate,
         events: {
             'change select': 'updateValue',
-            'blur select': 'updateValue'
+            'blur select': function(){
+                this.updateValue();
+                this.removeFocus();
+            },
+            'click': 'setFocus'
         },
         valueFunction: function () {
             return this.$('select').val();
@@ -257,7 +261,7 @@ define([
         events: {
             'submit form': 'formSubmitHandler'
         },
-        template: '<div class="form-message-container"></div><form action="{{actionId}}" id="form-{{id}}" class="form-horizontal" method=""></form>',
+        template: '<div class="form-message-container"></div><form action="{{actionId}}" id="form-{{id}}" class="form-vertical" method=""></form>',
 
         postRender: function () {
             this.formEl = this.$('form');

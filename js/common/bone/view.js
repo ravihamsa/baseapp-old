@@ -228,6 +228,10 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
             var action = target.attr('href').substr(1);
             _this['actionHandler'].call(_this, action);
         });
+
+        _this.$el.on('click', '.dummy', function (e) {
+            e.preventDefault();
+        });
     }
 
     var setupOnChangeRender = function () {

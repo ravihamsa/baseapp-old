@@ -51,6 +51,18 @@ a {
 .b-none:after {
   border: 0;
 }
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  user-drag: element;
+  cursor: move;
+  /* Required to make elements draggable in old WebKit */
+
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
 .btn {
   background: -webkit-gradient(linear, left top, left bottom, from(#f6f7f8), to(#dfe0e0));
   background: -moz-linear-gradient(top, #f6f7f8, #dfe0e0);
@@ -222,6 +234,7 @@ a {
 }
 .app-designer .action-nav {
   border-bottom: 1px solid #cccccd;
+  padding: 10px 15px;
 }
 .app-designer .prop-tabs {
   border-left: 1px solid #cccccd;
@@ -233,7 +246,7 @@ a {
   background-color: #cdcdcd;
   border-bottom: 1px solid #999;
 }
-.app-designer .prop-tabs .ib-list a {
+.app-designer .prop-tabs .ib-list li a {
   display: block;
   padding: 15px;
   border: 1px solid transparent;
@@ -241,8 +254,8 @@ a {
   top: 1px;
   font-weight: bold;
 }
-.app-designer .prop-tabs .ib-list a.active,
-.app-designer .prop-tabs .ib-list a:hover {
+.app-designer .prop-tabs .ib-list li.active a,
+.app-designer .prop-tabs .ib-list li:hover a {
   background-color: #fafafa;
   border: 1px solid #999;
   border-bottom: 1px solid transparent;
@@ -254,7 +267,7 @@ a {
   border-left: 1px solid #999;
   min-height: 500px;
 }
-.app-designer .tab-panes .el-type {
+.app-designer .tab-panes .element-type {
   background-color: #eff6fd;
   border-bottom: 1px solid #cccccd;
 }
@@ -283,10 +296,24 @@ a {
   background: -moz-linear-gradient(top, #7abcff, #4197ee);
   color: #fff;
 }
+a.draging {
+  display: block;
+  width: 180px;
+  padding: 5px;
+  border: 2px solid #b4b4b4;
+  border-radius: 3px;
+  color: #4d4f53;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #cccccc;
+  background: -webkit-gradient(linear, left top, left bottom, from(#d1d3d4), to(#8895a8));
+  background: -moz-linear-gradient(top, #d1d3d4, #8895a8);
+}
 .element-options .ib-list {
   width: 500px;
   margin-top: 20px;
   margin-left: 10px;
+  position: relative;
 }
 .element-options .ib-list li {
   margin-right: 50px;
@@ -326,14 +353,17 @@ a {
   border-radius: 3px;
   box-shadow: 0 0 1px 1px #EFEFEF;
 }
-.form-vertical .control-group span.inline-help {
+.form-vertical .control-group .type-checkbox input {
+  width: auto;
+}
+.form-vertical .control-group span.help-inline {
   font-size: 12px;
   font-style: italic;
   display: inline-block;
   margin-left: 10px;
   color: #3a3b3c;
 }
-.form-vertical .control-group.active {
+.form-vertical .focused {
   background-color: #dafed9;
   border-bottom: 1px solid #e9e9e9;
 }

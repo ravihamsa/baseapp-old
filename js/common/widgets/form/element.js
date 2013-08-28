@@ -97,7 +97,8 @@ define(['common/app', 'common/bone', './validator','text!../../templates/widgets
         className: 'element',
         events: {
             'change input': 'updateValue',
-            'blur input': 'updateValue'
+            'blur input': 'updateValue',
+            'click': 'setFocus'
         },
         template: inputViewTemplate,
 
@@ -156,13 +157,19 @@ define(['common/app', 'common/bone', './validator','text!../../templates/widgets
             return this.$('input').val();
         },
         updateValue: function (skipValidate) {
-            //console.log('updateValue', this.model.id, this.valueFunction());
             this.model.set('value', this.valueFunction());
-
             if (skipValidate !== true) {
                 this.model.isElementValid();
             }
 
+        },
+        setFocus:function(){
+            var form = this.$el.closest('form');
+            form.find('.focused').removeClass('focused');
+            this.$el.addClass('focused');
+        },
+        removeFocus:function(){
+            this.$el.removeClass('focused');
         }
     });
 

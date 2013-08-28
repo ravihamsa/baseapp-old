@@ -89,6 +89,10 @@ define(['require', 'common/router'], function (require, Router) {
             setTimeout(function(){
                 callback(null, task.params);
             }, Math.round(Math.random()*3000))
+        },
+        beautifyId:function(s){
+            s = s.replace(/([A-Z])/g, function(s){return ' '+s});
+            return s.replace(/(^.)/g, function(s){return s.toUpperCase()});
         }
     }
 

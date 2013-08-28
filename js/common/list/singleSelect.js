@@ -37,9 +37,10 @@ define(['common/bone'], function (Bone) {
     var ItemView = Bone.View.extend({
         tagName:'li',
         className:'single-select-item',
-        template:'<a href="#{{id}}" class="action {{toggleClass "selected"}}">{{name}} {{selected}}</a>',
+        template:'<a href="#{{id}}" class="action">{{name}}</a>',
         changeHandler:function(){
             this.render();
+            this.$el.toggleClass('active',this.model.is('selected'));
         }
     })
 

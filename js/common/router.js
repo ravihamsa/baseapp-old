@@ -15,7 +15,7 @@ define(function (require) {
         index: function () {
 
             require(['common/app'],function(app){
-                app.router.navigate('/examples/form/', {trigger: true});
+                app.router.navigate('#studio', {trigger: true});
             });
 
         },

@@ -4,9 +4,18 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
 
     var ElementItemView = Base.View.extend({
         tagName:'li',
-        template:'<button class="btn element">{{name}}</button>',
+        template:'<a href="#">{{name}}</a>',
         events:{
-            'mousedown button':'startDrag'
+            'mousedown':'startDrag',
+            'dragstart':function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+
+            }
+        },
+        postRender:function(){
+          this.$el.attr('draggable', false);
         },
         startDrag:function(e){
             var target = $(e.target);
@@ -20,11 +29,15 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
             var MOUSE_UP =  'mouseup.'+timeStamp;
             var MOUSE_MOVE = 'mousemove.'+timeStamp;
             var BODY = $('body');
-            var DROPABLE = $('.form-element-list');
+            var DROPABLE = $('.element-stack');
 
             var position = DROPABLE.offset();
+            position.top -= $(window).scrollTop();
+            position.left -=  $(window).scrollLeft();
             position.bottom = position.top + DROPABLE.height();
             position.right = position.left + DROPABLE.width();
+
+
 
             var toDrag = target;
             toDrag.css({
@@ -38,12 +51,13 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
 
 
             var proxy = toDrag.clone();
+            proxy.addClass('draging');
 
 
             proxy.css({
                 top: e.clientY,
                 left: e.clientX,
-                position:'absolute',
+                position:'fixed',
                 'z-index':1001,
                 'pointer-events':'none'
             })
@@ -54,6 +68,8 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
                 if((position.left < e.clientX &&  e.clientX < position.right) && (position.top < e.clientY && e.clientY < position.bottom)){
                     cursor = 'copy'
                     isInside = true;
+                }else{
+                    isInside = false;
                 }
                 proxy.css({
                     top: e.clientY,
@@ -76,14 +92,44 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
                     cursor:'auto'
                 })
 
-                if(isInside){
-                    _this.model.trigger('elementDropped', _this.model.toJSON());
+                if(isInside === true){
+                    _this.model.trigger('elementDropped', _this.model);
                 }
             })
         }
     })
 
 
+
+    /*
+    var ElementItemView = Base.View.extend({
+        tagName:'div',
+        template:'<div>{{name}}</div>',
+        postRender:function(){
+           this.$el.attr('draggable', 'true')
+
+               // Handle the start of dragging to initialize.
+               .bind('dragstart', function(ev) {
+                   var dt = ev.originalEvent.dataTransfer;
+                   dt.setData("Text", "Dropped in zone!");
+                   return true;
+               })
+
+               // Handle the end of dragging.
+               .bind('dragend', function(ev) {
+                   console.log('#newschool .messages', 'Drag ended');
+                   return false;
+               });
+
+        },
+        startDrag:function(e){
+            console.log(arguments);
+
+            var BODY = $('body');
+            var DROPABLE = $('.sel-el-list');
+        }
+    });
+    */
     var View = Base.View.extend({
         template: template,
         events:{
@@ -93,8 +139,9 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
             var items = this.model.get('items');
             var listView = baseUtil.createView({
                 View:Base.CollectionView,
+                className:'ib-list',
                 collection:items,
-                parentEl:this.$('.element-list'),
+                parentEl:this.$('.el-type-list-container'),
                 itemView:ElementItemView
             })
 
