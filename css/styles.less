@@ -80,8 +80,8 @@ a {
   }
 }
 
-.text-shadow {
-  text-shadow: 1px 1px 0 #fff;
+.text-shadow (@color) {
+  text-shadow: 1px 1px 0 @color;
 }
 
 .tb-gradient(@from, @to) {
@@ -95,7 +95,7 @@ a {
   border-radius: 2px;
   display: inline-block;
   padding: 5px 10px;
-  .text-shadow;
+  .text-shadow (#fff);
   font-weight: bold;
   box-shadow: 2px 2px 0px 0px #FFFFFF inset;
   position: relative;
@@ -181,13 +181,13 @@ a {
 
   li {
     a {
-      text-shadow: 1px 1px 0 #fff;
+      .text-shadow(#fff);
       display: block;
       padding: 10px 20px;
       &:hover, &.active {
         background-color: @blueHighlightColor;
         color: #fff;
-        text-shadow: 1px 1px 0 transparent;
+        .text-shadow(transparent);
 
         &:after {
           content: '\25B2';
@@ -240,7 +240,7 @@ a {
   .header {
     background-color: @grayE0;
     border-bottom: 1px solid @borderColor;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 0 0;
     box-shadow: 1px 1px 0 0 #F4F4F4 inset;
   }
 
@@ -255,13 +255,13 @@ a {
 
     li {
       a {
-        text-shadow: 1px 1px 0 #fff;
+        .text-shadow(#fff);
         display: block;
         padding: 10px 20px;
         &:hover, &.active {
           background-color: @blueHighlightColor;
           color: #fff;
-          text-shadow: 1px 1px 0 transparent;
+          .text-shadow(transparent);
 
           &:after {
             content: '\25B2';
@@ -295,9 +295,9 @@ a {
 
   .prop-tabs {
     border-left: 1px solid @borderColor;
-    form{
+    form {
       height: 500px;
-      
+
     }
     .ib-list {
       background-color: @grayCD;
@@ -311,10 +311,10 @@ a {
         top: 1px;
         font-weight: bold;
 
-        &.active {
-          background-color: #fff;
+        &.active , &:hover{
+          background-color: #fafafa;
           border: 1px solid #999;
-          border-bottom: 1px solid #fff;
+          border-bottom: 1px solid transparent;
           position: relative;
           z-index: 0;
         }
@@ -324,7 +324,8 @@ a {
 
   .tab-panes {
     background-color: #fafafa;
-    border-top: 1px solid #fff;
+    border-left: 1px solid #999;
+    min-height: 500px;
     .el-type {
       background-color: #eff6fd;
       border-bottom: 1px solid @borderColor;
@@ -332,8 +333,62 @@ a {
   }
 }
 
-.element-stack {
 
+.element-stack {
+  min-height: 500px;
+  .sel-el-list {
+    a {
+      display: block;
+      .tb-gradient(#f6f7f8, #dfe0e0);
+      line-height: 25px;
+      padding: 10px;
+      border-top: 1px solid #fff;
+      border-bottom: 1px solid #d1cfcf;
+      position: relative;
+
+      &:after {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        content: '\25B6'
+
+      }
+    }
+    .active a, a:hover {
+      .tb-gradient(#7abcff, #4197ee);
+      color: #fff;
+    }
+  }
+}
+
+.element-options {
+  .ib-list {
+    width:500px;
+    margin-top: 20px;
+    margin-left: 10px;
+    li {
+      margin-right: 50px;
+      margin-bottom: 10px;
+      a {
+        display: block;
+        width: 180px;
+        padding: 5px;
+        border: 2px solid #b4b4b4;
+        border-radius: 3px;
+        color:#4d4f53;
+        text-align: center;
+        font-weight: bold;
+        .text-shadow(#ccc);
+        .tb-gradient(#d1d3d4, #8895a8)
+      }
+      &.active, &:hover{
+        a{
+          .tb-gradient(#8895a8, #d1d3d4)
+        }
+      }
+    }
+
+  }
 }
 
 .form-vertical {

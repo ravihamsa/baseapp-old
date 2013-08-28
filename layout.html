@@ -105,10 +105,10 @@
                         <ul class="ib-list">
                             <li>Last Saved on 12th Dec 2012</li>
                             <li>
-                                <button class="btn">Save</button>
+                                <a href="#" class="btn">Save</a>
                             </li>
                             <li>
-                                <button class="btn">Publish</button>
+                                <a href="#" class="btn">Publish</a>
                             </li>
                         </ul>
                     </div>
@@ -130,54 +130,84 @@
             <div class="designer yui3-g">
                 <div class="yui3-u-7-24">
                     <div class="element-stack">
-                        element stack
+                        <div class="sel-el-list">
+                            <ul>
+                                <li>
+                                    <div>
+                                        <a href="#">Name</a>
+                                    </div>
+                                </li>
+                                <li class="active">
+                                    <div>
+                                        <a href="#">Product Category</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <a href="#">Product Name</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="yui3-u-17-24">
-                    <div class="prop-tabs">
+                    <div class="prop-stack">
+                        <div class="prop-tabs">
                         <ul class="ib-list">
                             <li>
-                                <a href="#">Add Fields</a>
+                                <a href="#"  class="active">Add Fields</a>
                             </li>
                             <li>
-                                <a href="#" class="active">Field Properties</a>
+                                <a href="#">Field Properties</a>
                             </li>
                             <li>
                                 <a href="#">Form Settings</a>
                             </li>
                         </ul>
+                        </div>
                         <div class="tab-panes">
-                            <form action="" class="form-vertical">
-                                <div class="el-type control-group">
-                                    <a href="#" class="btn dropdown">Single Line Text Field</a>
-                                </div>
-
-                                <div class="control-group">
-                                    <label>Field Label</label>
-
-                                    <div class="control">
-                                        <input type="text" name="some" placeholder="Name" />
-                                        <span class="inline-help">40 Characters Max</span>
+                            <div class="element-options p10">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis lectus metus, at posuere neque.</p>
+                                <ul class="ib-list">
+                                    <li><a href="#">Single Line Text Field</a> </li>
+                                    <li><a href="#">Number</a> </li>
+                                    <li><a href="#">DropDown</a> </li>
+                                </ul>
+                            </div>
+                            <div class="fld-properties" style="display: none">
+                                <form action="" class="form-vertical">
+                                    <div class="el-type control-group">
+                                        <a href="#" class="btn dropdown">Single Line Text Field</a>
                                     </div>
-                                </div>
 
-                                <div class="control-group active">
-                                    <label>Default Text</label>
+                                    <div class="control-group">
+                                        <label>Field Label</label>
 
-                                    <div class="control">
-                                        <input type="text" name="some" placeholder="Enter Name" />
-                                        <span class="inline-help">20 Characters Max</span>
+                                        <div class="control">
+                                            <input type="text" name="some" placeholder="Name" />
+                                            <span class="inline-help">40 Characters Max</span>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="control-group">
-                                    <label>Visibility</label>
+                                    <div class="control-group active">
+                                        <label>Default Text</label>
 
-                                    <div class="control">
-                                        <a href="#" class="btn dropdown">User</a>
+                                        <div class="control">
+                                            <input type="text" name="some" placeholder="Enter Name" />
+                                            <span class="inline-help">20 Characters Max</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+
+                                    <div class="control-group">
+                                        <label>Visibility</label>
+
+                                        <div class="control">
+                                            <a href="#" class="btn dropdown">User</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
