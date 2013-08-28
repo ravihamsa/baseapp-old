@@ -258,21 +258,20 @@ a {
         .text-shadow(#fff);
         display: block;
         padding: 10px 20px;
-        &:hover, &.active {
-          background-color: @blueHighlightColor;
-          color: #fff;
-          .text-shadow(transparent);
+      }
+      &:hover a, &.active a{
+        background-color: @blueHighlightColor;
+        color: #fff;
+        .text-shadow(transparent);
 
-          &:after {
-            content: '\25B2';
-            position: absolute;
-            top: 30px;
-            left: 0;
-            right: 0;
-            text-align: center;
-          }
+        &:after {
+          content: '\25B2';
+          position: absolute;
+          top: 30px;
+          left: 0;
+          right: 0;
+          text-align: center;
         }
-
       }
       .d-border;
     }

@@ -1,143 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New App</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link href="js/libs/pretty/prettify.css" type="text/css" rel="stylesheet" />
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-    <style type="text/css">
-
-
-        #header {
-            background-color: #000;
-            padding: 10px 10px 10px 20px;
-        }
-
-        .logo {
-            width: 100px;
-            height: 30px;
-            display: inline-block;
-            text-indent: -999em;
-            float: left;
-        }
-
-        .nav-pills {
-            float: left;
-            margin-bottom: 0;
-            margin-left: 50px;
-
-        }
-
-        .nav-pills li a {
-            text-transform: uppercase;
-        }
-
-        .element {
-            clear: both;
-        }
-
-        .preview {
-            padding: 20px;
-            border: 2px solid #e1e1e8;
-            border-radius: 10px;
-        }
-        .min-height{
-            min-height: 400px;
-        }
-
-        .p10{
-            padding: 10px;
-        }
-
-        body{
-            font-family: 'Open Sans', sans-serif;
-        }
-        .border1 {
-            border:1px solid #d0d1d1;
-        }
-
-        ul.inline-block-list {
-            display: block;
-            background-color: #cdcdcd;
-            padding: 0;
-        }
-        .inline-block-list li {
-            display: inline-block;
-        }
-        .inline-block-list li.active a{
-            border:1px solid #999;
-            border-bottom-color:transparent;
-        }
-
-        .inline-block-list li.active {
-            background-color: #fff;
-            text-decoration: none;
-        }
-
-        a:focus,a:hover {
-            outline: 0;
-            text-decoration: none;
-        }
-
-        .inline-block-list li a {
-            color:#666;
-            font-weight: bold;
-            line-height: 40px;
-            display: block;
-            height: 40px;
-            padding: 0 15px;
-            border-right: 1px solid #fff;
-            border-left:1px solid #d0d1d1;
-        }
-
-        .form-element-list {
-            border-right: 1px solid #d0d1d1;
-        }
-
-        .selected-list ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        .selected-list li a {
-            display: block;
-            padding: 20px;
-            background-color: #ebebeb;
-            box-shadow:0 0 20px #FFFFFF inset;
-            margin-bottom: 1px;
-        }
-        .selected-list li{
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .selected-list li .selected {
-            background-color: #5ba8f6;
-        }
-
-        .element-list li {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-
-    </style>
-
+    <title>Layout HTML</title>
+    <link rel="stylesheet" href="css/cssgrids-min.css" />
+    <link rel="stylesheet" href="css/cssreset-min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
-<div class="container">
+<div class="layout-container">
+    <div class="powered-by">
+        <div class="layout-box">
+            powered by <strong>eiris</strong>
+        </div>
+    </div>
+    <div class="company-header">
+        <div class="layout-box">
+            <div class="yui3-g">
+                <div class="yui3-u-1-2">
+                    <em class="logo">
 
-    <div class="page-header">
-        <h1>App Studio
-            <small>Design your apps here</small>
-        </h1>
+                    </em>
+                </div>
+                <div class="yui3-u-1-2 t-right">
+                    <div class="pv10">
+                        Hi
+                        <a href="#user" class="user">Babu Prakash</a>
+                        |
+                        <a href="#logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div class="page-nav">
+        <div class="layout-box">
+            <ul class="ib-list">
+                <li>
+                    <a href="#" class="dummy">Dashboard</a>
+                </li>
+                <li class="">
+                    <a href="#" class="dummy">Users</a>
+                </li>
+                <li>
+                    <a href="#" class="active">Apps</a>
+                </li>
+                <li>
+                    <a href="#"  class="dummy">Organization</a>
+                </li>
+                <li>
+                    <a href="#"  class="dummy">System Settings</a>
+                </li>
+                <li>
+                    <a href="#" class="dummy">Account Setting</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <div class="layout-box">
+            <div class="p10">
+                <ul class="ib-list">
+                    <li>
+                        <a href="#">Apps</a>
+                    </li>
+                    <li><span>&gt;</span></li>
+                    <li><span>Field Force</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-header">
+        <div class="layout-box ph10">
+            <img src="images/app-header.png" />
+        </div>
+    </div>
+
+
     <div id="app-body">
+
 
     </div>
 </div>
@@ -150,6 +94,16 @@
 <script type="text/javascript" src="js/libs/handlebars.js"></script>
 <script type="text/javascript" src="js/libs/TweenMax.js"></script>
 <script type="text/javascript" src="js/libs/require-min.js" data-main="js/common.js"></script>
+<script type="text/javascript">
+    $(function(){
+       console.log($('.dummy'));
+        $('.dummy').on('click',function(e){
+            console.log('stopeed');
+            e.preventDefault();
+        });
+    });
+
+</script>
 
 </body>
 </html>

@@ -196,14 +196,14 @@ a {
   display: block;
   padding: 10px 20px;
 }
-.app-designer .sub-nav li a:hover,
-.app-designer .sub-nav li a.active {
+.app-designer .sub-nav li:hover a,
+.app-designer .sub-nav li.active a {
   background-color: #5eabec;
   color: #fff;
   text-shadow: 1px 1px 0 transparent;
 }
-.app-designer .sub-nav li a:hover:after,
-.app-designer .sub-nav li a.active:after {
+.app-designer .sub-nav li:hover a:after,
+.app-designer .sub-nav li.active a:after {
   content: '\25B2';
   position: absolute;
   top: 30px;
