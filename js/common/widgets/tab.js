@@ -5,7 +5,7 @@ define([
     ],
     function(app, Base, SingleSelect){
 
-        var baseUtil =  Base.util;
+        var baseUtil =  Bone.util;
 
         var NavItemView = Base.View.extend({
             tagName:'li',

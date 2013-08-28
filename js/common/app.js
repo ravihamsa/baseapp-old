@@ -1,15 +1,14 @@
-define(['require','common/router'], function (require, Router) {
+define(['require', 'common/router'], function (require, Router) {
 
     var hex_md5 = window.hex_md5;
-
 
 
     var templateIndex = {}, dataIndex = {};
 
     var app = {
         root: '/',
-        baseUrl:'js/',
-        appBody:'#app-body',
+        baseUrl: 'js/',
+        appBody: '#app-body',
         compileTemplate: function (str) {
             return Handlebars.compile(str);
         },
@@ -23,9 +22,9 @@ define(['require','common/router'], function (require, Router) {
                 def = $.Deferred();
                 _this.cacheTemplate(def, hash);
                 //if template is already a function, can be used for using other template engines
-                if(typeof template === 'function'){
+                if (typeof template === 'function') {
                     def.resolve(template);
-                }else if(typeof  template === 'string'){
+                } else if (typeof  template === 'string') {
                     //app.log(template, template.length, template.indexOf('.html'));
                     //if template is an url
                     if (template.indexOf('.html') === template.length - 5) {
@@ -44,16 +43,53 @@ define(['require','common/router'], function (require, Router) {
             }
             return def;
         },
-        cacheTemplate:function(def, hash){
+        cacheTemplate: function (def, hash) {
             templateIndex[hash] = def;
         },
-        log:function(){
-            console.log.apply(console,arguments);
+        cacheData: function (def, hash) {
+            dataIndex[hash] = def;
         },
-        getString:function(str){
+        log: function () {
+            console.log.apply(console, arguments);
+        },
+        getString: function (str) {
             return str;
         },
-        appModel: new Backbone.Model()
+        parseSuccessResponse: function (resp) {
+            return resp;
+        },
+        parseFailureResponse: function (resp) {
+            return resp;
+        },
+        appModel: new Backbone.Model(),
+        getRequestDef: function (config) {
+            var _this = this;
+            var hash = getHash(JSON.stringify(_.pick(config, 'id', 'params')));
+            var def = getTemplateDefByHash(hash);
+
+            if (!def) {
+                def = $.Deferred();
+                $.ajax(config).done(function (resp) {
+                    var parsedResponse = _this.parseSuccessResponse(resp)
+                    if (parsedResponse.errors) {
+                        def.reject(parsedResponse.errors);
+                    } else {
+                        _this.cacheData(def, hash);
+                        def.resolve(parsedResponse);
+                    }
+                }).fail(function (resp) {
+                        var parsedResponse = _this.parseFailureResponse(resp)
+                        def.reject(parsedResponse.errors);
+                    })
+
+            }
+            return def;
+        },
+        makeRequest:function(task, callback){
+            setTimeout(function(){
+                callback(null, task.params);
+            }, Math.round(Math.random()*3000))
+        }
     }
 
 
@@ -61,8 +97,11 @@ define(['require','common/router'], function (require, Router) {
         return hex_md5(key.toString());
     }
 
-    var getTemplateDefByHash = function(hash){
+    var getTemplateDefByHash = function (hash) {
         return templateIndex[hash];
+    }
+    var getRequestDefByHash = function (hash) {
+        return dataIndex[hash];
     }
 
 

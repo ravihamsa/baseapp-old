@@ -8,10 +8,10 @@
 define(['common/app', 'common/bone', './validator','text!../../templates/widgets/form/inputView.html'], function (app, Base, Validator, inputViewTemplate) {
     "use strict";
 
-    var DOT_CONTROL_GROUP = '.form-group';
-    var DOT_CONTROL_LABEL = '.form-label';
+    var DOT_CONTROL_GROUP = '.control-group';
+    var DOT_CONTROL_LABEL = '.control-label';
     var DOT_HELP_INLINE = '.help-inline';
-    var INVALID_CLASS = 'has-error';
+    var INVALID_CLASS = 'error';
 
 
     var ElementModel = Base.Model.extend({

@@ -19,7 +19,7 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
                 setupSubViews.call(_this);
                 if (_this.setState) {
                     var defaultState = _.keys(_this.getOption('states'))[0];
-                    _this.setState(_this.getOption('state') || defaultState);
+                    _this.setState(_this.getState() || _this.getOption('state') || defaultState);
                 }
                 _this.postRender();
             });
@@ -47,6 +47,12 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
         },
         actionHandler: function () {
 
+        },
+        showLoading:function(){
+            this.$el.addClass('loading');
+        },
+        hideLoading:function(){
+            this.$el.removeClass('loading');
         }
     });
 
@@ -222,10 +228,6 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
             var action = target.attr('href').substr(1);
             _this['actionHandler'].call(_this, action);
         });
-
-        _this.$el.on('click', '.dummy',function(e){
-            e.preventDefault();
-        });
     }
 
     var setupOnChangeRender = function () {
@@ -237,7 +239,32 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
         }
     }
 
-    var setupFunctions = [bindDataEvents, setupTemplateEvents, setupAttributeWatch, setupActionNavigateAnchors, setupOnChangeRender, setupStateEvents];
+
+
+
+    var setupMetaRequests = function(){
+        var _this = this;
+        var requestConfigs = _this.getOption('requests') || _this.requests;
+        if(!requestConfigs){
+            return;
+        }
+        var requestQue = util.aSyncQueue(app.makeRequest, 10);
+        requestQue.added = _.bind(_this.showLoading, _this);
+
+        requestQue.drain = _.bind(_this.hideLoading, _this);
+
+        requestQue.push(requestConfigs, function(err, data){
+            _this.trigger('requestComplete', data);
+        })
+
+        _this.getRequestQue = function(){
+            return requestQue;
+        }
+
+
+    }
+
+    var setupFunctions = [bindDataEvents, setupTemplateEvents, setupAttributeWatch, setupActionNavigateAnchors, setupOnChangeRender, setupStateEvents, setupMetaRequests];
 
     return BaseView;
 });

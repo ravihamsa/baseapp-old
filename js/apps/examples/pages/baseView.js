@@ -43,9 +43,59 @@ define(['common/bone', './examplePage'], function(Base, ExamplePage){
             {
                 func:baseViewWithSubViews,
                 title:'Base View with Sub Views'
+            },
+            {
+                func:metaRequests,
+                title:'Data Requests using config'
             }
         ]
     })
+
+
+    function metaRequests(previewEl, consoleEl){
+        //
+
+        var view = new Base.View({
+            template:'<div style="background-color: red; padding: 20px; border: 1px solid #ccc;">Test View for Meta Requests</div>',
+            requests:[{
+                id:'request1',
+                params:{
+                    index:0,
+                    value:'value1'
+                }
+            },{
+                id:'request2',
+                params:{
+                    index:1,
+                    value:'value2'
+                }
+            }]
+        });
+
+
+
+        view.render();
+
+
+        //
+
+        previewEl.html(view.el);
+
+        view.on('requestComplete',function(data){
+            consoleEl.html(ExamplePage.syntaxHighlight(data))
+        })
+
+        $('<button class="btn">Add Five More Requests</button>').on('click', function(){
+            for(var i=0; i<5;i++){
+                view.getRequestQue().push({id:'something',params:{index:i, value:Math.random()*30000}}, function(err,out){
+                    consoleEl.html(ExamplePage.syntaxHighlight(out));
+                });
+            }
+
+        }).appendTo(previewEl);
+
+
+    }
 
 
     function inlineTemplate(previewEl){
