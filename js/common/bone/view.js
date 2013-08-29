@@ -227,6 +227,7 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
         var verifyPropagation = function(e){
             if(e.actionHandled){
                 e.stopPropagation();
+                $('body').trigger('click');
             }
         }
         _this.$el.on('click.'+_this.cid, '.action', function (e) {

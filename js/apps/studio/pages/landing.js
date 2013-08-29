@@ -73,6 +73,8 @@ define([
             var formProps = baseUtil.createView({View: FormProps.View, Model: FormProps.Model, parentEl: tab.$('.tab-panes .id-formSettings')});
 
 
+            var elementPropsModel = elementProps.model;
+
 
 
             var formElementsCollection = new SingleSelect.ItemCollection()
@@ -97,14 +99,42 @@ define([
 
 
             formDesignerModel.on('change:selectedItem',function(model, selectedModel){
-                elementProps.model.set('elementModel',selectedModel);
+                elementPropsModel.set('elementModel',selectedModel);
                 tabModel.setSelectedById('fldProperties');
             })
 
             formElementsCollection.on('change:type',function(model, value){
-                elementProps.model.set('elementModel',model);
+                elementPropsModel.set('elementModel',model);
                 elementProps.render();
             });
+
+
+            //
+            elementProps.on('deleteElement',function(model){
+                var closestModel = model.getClosest();
+                model.removeSelf();
+                if(closestModel){
+                    formDesignerModel.setSelectedById(closestModel.id);
+                }else{
+                    formDesignerModel.clearSelection();
+                }
+
+            })
+
+            elementProps.on('duplicateElement',function(model){
+                var obj =  model.toJSON();
+                obj.id = ''+counter++
+                obj.name = obj.name + ' Copy'
+                formElementsCollection.add(obj);
+                formDesignerModel.setSelectedById(obj.id);
+            })
+
+            elementProps.on('moveUpElement',function(model){
+                model.moveUp();
+            })
+            elementProps.on('moveDownElement',function(model){
+                model.moveDown();
+            })
 
         }
     })

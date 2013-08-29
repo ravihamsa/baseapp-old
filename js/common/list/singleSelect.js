@@ -112,6 +112,13 @@ define(['common/bone'], function (Bone) {
             previousSelected.deselect();
             curItem.select();
             updateSelected();
+        },
+
+        _this.clearSelection = function(){
+            previousSelected = selected;
+            selected =  null;
+            previousSelected.deselect();
+            updateSelected();
         }
     }
 

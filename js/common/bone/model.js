@@ -41,6 +41,19 @@ define(['common/app'],function(app){
             }
             this.removeSelf();
             coll.add(this, {at:index+1});
+        },
+        getClosest:function(){
+            var coll = this.collection;
+            if(!coll || coll.length < 2){
+                return;
+            }
+            var index = coll.indexOf(this);
+            var prev = coll.at(index-1);
+            if(prev){
+                return prev;
+            }else{
+                return coll.at(index+1);
+            }
         }
     });
 

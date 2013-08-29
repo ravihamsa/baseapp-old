@@ -3,10 +3,7 @@ define(['common/app','common/bone', 'common/widgets/form', 'text!../templates/wi
 
 
     var ElementPropertiesForm = Form.View.extend({
-        template: '<div class="form-message-container"></div><form action="{{actionId}}" id="form-{{id}}" class="form-vertical" method=""><div class="grp-top"></div><div class="grp-elements"></div><div class="action-buttons"><a href="#delete" class="btn action">Delete</a> <a href="#duplicate" class="btn action">Duplicate</a> <a href="#moveup" class="btn action">Move Up</a> <a href="#movedown" class="btn action">Move Down</a> </div> </form>',
-        actionHandler:function(action, e){
-            e.actionHandled = true;
-        }
+        template: '<div class="form-message-container"></div><form action="{{actionId}}" id="form-{{id}}" class="form-vertical" method=""><div class="grp-top"></div><div class="grp-elements"></div><div class="action-buttons"><a href="#delete" class="btn action">Delete</a> <a href="#duplicate" class="btn action">Duplicate</a> <a href="#moveup" class="btn action">Move Up</a> <a href="#movedown" class="btn action">Move Down</a> </div> </form>'
     })
 
 
@@ -44,6 +41,7 @@ define(['common/app','common/bone', 'common/widgets/form', 'text!../templates/wi
 
         },
         renderForm:function(elementModel){
+            var _this = this;
             var elementAttributes = elementModel.toJSON();
 
             var elementList = [];
@@ -94,15 +92,39 @@ define(['common/app','common/bone', 'common/widgets/form', 'text!../templates/wi
 
             form.on('formSubmit', function(obj){
                 elementModel.set(obj);
-                console.log(elementModel.toJSON())
             })
 
+            form.on('deleteElement',function(){
+                _this.model.trigger('removeElement');
+            });
 
             var fieldTypeModel =  coll.get('type');
 
             fieldTypeModel.on('change:value',function(model, value){
                 elementModel.set('type', value);
             })
+        },
+        actionHandler:function(action, e){
+            e.actionHandled = true;
+            var _this = this;
+            var elementModel = this.model.get('elementModel');
+            switch(action){
+                case 'delete':
+                    _this.trigger('deleteElement', elementModel)
+                    break;
+                case 'moveup':
+                    _this.trigger('moveUpElement', elementModel)
+                    break;
+
+                case 'movedown':
+                    _this.trigger('moveDownElement', elementModel)
+                    break;
+
+                case 'duplicate':
+                    _this.trigger('duplicateElement', elementModel)
+                    break;
+
+            }
         }
 
 

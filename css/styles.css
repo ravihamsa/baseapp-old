@@ -265,6 +265,9 @@ a {
 .app-designer .prop-tabs .ib-list li:hover a {
   background-color: #EFEFEF;
 }
+.app-designer .prop-tabs .ib-list li.active:hover a {
+  background-color: #fafafa;
+}
 .app-designer .tab-panes {
   background-color: #fafafa;
   border-left: 1px solid #999;
