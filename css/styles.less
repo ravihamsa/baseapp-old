@@ -198,7 +198,10 @@ a {
       .text-shadow(#fff);
       display: block;
       padding: 10px 20px;
-      &:hover, &.active {
+      &:hover{
+        background-color: #f2f2f2;
+      }
+      &.active {
         background-color: @blueHighlightColor;
         color: #fff;
         .text-shadow(transparent);
@@ -273,9 +276,12 @@ a {
         display: block;
         padding: 10px 20px;
       }
-      &:hover a, &.active a{
-        background-color: @blueHighlightColor;
-        color: #fff;
+      &:hover a{
+        background-color: #f2f2f2;
+      }
+      &.active a{
+
+
         .text-shadow(transparent);
 
         &:after {
@@ -285,6 +291,7 @@ a {
           left: 0;
           right: 0;
           text-align: center;
+          color: #fff;
         }
       }
       .d-border;
@@ -328,12 +335,16 @@ a {
 
         }
 
-        &.active a, &:hover a{
+        &.active a{
           background-color: #fafafa;
           border: 1px solid #999;
           border-bottom: 1px solid transparent;
           position: relative;
           z-index: 0;
+        }
+
+        &:hover a{
+          background-color: #EFEFEF;
         }
       }
 
@@ -372,10 +383,16 @@ a {
 
       }
     }
-    .active a, a:hover {
-      .tb-gradient(#7abcff, #4197ee);
+
+    a:hover {
+      .tb-gradient(#E9EAEB, #D9DADA);  //#E9EAEB, #D9DADA
+    }
+
+    .active a,.active a:hover{
+      .tb-gradient(#7abcff, #4197ee);  //#E9EAEB, #D9DADA
       color: #fff;
     }
+
   }
 }
 

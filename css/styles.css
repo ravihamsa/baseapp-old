@@ -151,13 +151,14 @@ a {
   display: block;
   padding: 10px 20px;
 }
-.page-nav li a:hover,
+.page-nav li a:hover {
+  background-color: #f2f2f2;
+}
 .page-nav li a.active {
   background-color: #5eabec;
   color: #fff;
   text-shadow: 1px 1px 0 transparent;
 }
-.page-nav li a:hover:after,
 .page-nav li a.active:after {
   content: '\25B2';
   position: absolute;
@@ -208,13 +209,12 @@ a {
   display: block;
   padding: 10px 20px;
 }
-.app-designer .sub-nav li:hover a,
+.app-designer .sub-nav li:hover a {
+  background-color: #f2f2f2;
+}
 .app-designer .sub-nav li.active a {
-  background-color: #5eabec;
-  color: #fff;
   text-shadow: 1px 1px 0 transparent;
 }
-.app-designer .sub-nav li:hover a:after,
 .app-designer .sub-nav li.active a:after {
   content: '\25B2';
   position: absolute;
@@ -222,6 +222,7 @@ a {
   left: 0;
   right: 0;
   text-align: center;
+  color: #fff;
 }
 .app-designer .sub-nav li:first-child {
   border-left: transparent;
@@ -254,13 +255,15 @@ a {
   top: 1px;
   font-weight: bold;
 }
-.app-designer .prop-tabs .ib-list li.active a,
-.app-designer .prop-tabs .ib-list li:hover a {
+.app-designer .prop-tabs .ib-list li.active a {
   background-color: #fafafa;
   border: 1px solid #999;
   border-bottom: 1px solid transparent;
   position: relative;
   z-index: 0;
+}
+.app-designer .prop-tabs .ib-list li:hover a {
+  background-color: #EFEFEF;
 }
 .app-designer .tab-panes {
   background-color: #fafafa;
@@ -290,8 +293,12 @@ a {
   right: 10px;
   content: '\25B6';
 }
-.element-stack .sel-el-list .active a,
 .element-stack .sel-el-list a:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(#e9eaeb), to(#d9dada));
+  background: -moz-linear-gradient(top, #e9eaeb, #d9dada);
+}
+.element-stack .sel-el-list .active a,
+.element-stack .sel-el-list .active a:hover {
   background: -webkit-gradient(linear, left top, left bottom, from(#7abcff), to(#4197ee));
   background: -moz-linear-gradient(top, #7abcff, #4197ee);
   color: #fff;
