@@ -8,77 +8,39 @@
 
 define(['common/bone', './examplePage'], function(Base, ExamplePage){
 
+    var baseUtil = Base.util;
 
     var PageView = ExamplePage.View.extend({
         examples:[
             {
-                func:autoWiredChangeListeners,
-                title:'Auto wired Change Listeners'
-            },{
-                func:underscoreTemplate,
-                title:'Underscore Template'
-            },{
-                func:urlTemplate,
-                title:'URL Template'
+                func:modelPositions,
+                title:'Model Position'
             }
         ]
     })
 
 
-    function autoWiredChangeListeners(previewEl){
+    function modelPositions(previewEl){
         //
 
+        var coll = new Base.Collection([{id:'one', name:'one'}, {id:'two', name:'two'}, {id:'three', name:'three'}, {id:'four', name:'four'}])
+        var view = baseUtil.createView({View:Base.CollectionView, collection:coll, parentEl:previewEl});
 
-        var MyView = Base.View.extend({
-            attribute1ChangeHandler:function(value){
-                this.$el.html('attribute1 changed to : '+ value)
-            }
-        })
-        var model = new Base.Model({
-            attribute1:'value1',
-            attribute2:'value2'
-        })
+        var three = coll.get('three');
 
-        var view = new MyView({
-            model:model
-        })
-        view.render();
-
-        model.set('attribute1', new Date().toDateString());
         //
+        $('<button class="btn">Move Three Up</button>').on('click', function(){
+            three.moveUp();
+        }).appendTo(previewEl);
 
-        previewEl.html(view.el);
+        $('<button class="btn">Move Three Down</button>').on('click', function(){
+            three.moveDown();
+        }).appendTo(previewEl);
 
     }
 
 
-    function underscoreTemplate(previewEl){
-        //
-        var View = Base.View.extend({
-            template: _.template('this is underscore template')
-        });
 
-        var view = new View();
-        view.render();
-
-        //
-
-        previewEl.html(view.el);
-    }
-
-    function urlTemplate(previewEl){
-        //
-        var View = Base.View.extend({
-            template: 'apps/examples/templates/urlTemplate.html'
-        });
-
-        var view = new View();
-        view.render();
-
-        //
-
-        previewEl.html(view.el);
-    }
 
     var PageModel = Base.Model.extend({
 

@@ -65,6 +65,8 @@ define(function () {
                 }
             }
 
+
+
             var filteredConfig = _.omit(config, 'Collection', 'Model', 'parentEl', 'skipRender');
             view = new config.View(filteredConfig);
 
