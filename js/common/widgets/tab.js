@@ -39,6 +39,8 @@ define([
                     el:this.$('.tab-panes'),
                     itemView:TabItemView
                 })
+
+
             },
             actionHandler:function(selectedId){
                 this.model.setSelectedById(selectedId);

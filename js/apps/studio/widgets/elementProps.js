@@ -2,6 +2,14 @@ define(['common/app','common/bone', 'common/widgets/form', 'text!../templates/wi
     var baseUtil = Base.util;
 
 
+    var ElementPropertiesForm = Form.View.extend({
+        template: '<div class="form-message-container"></div><form action="{{actionId}}" id="form-{{id}}" class="form-vertical" method=""><div class="grp-top"></div><div class="grp-elements"></div><div class="action-buttons"><a href="#delete" class="btn action">Delete</a> <a href="#duplicate" class="btn action">Duplicate</a> <a href="#moveup" class="btn action">Move Up</a> <a href="#movedown" class="btn action">Move Down</a> </div> </form>',
+        actionHandler:function(action, e){
+            e.actionHandled = true;
+        }
+    })
+
+
     var elementTypeList = [
         {
             id: 'label',
@@ -40,7 +48,7 @@ define(['common/app','common/bone', 'common/widgets/form', 'text!../templates/wi
 
             var elementList = [];
 
-            elementList.push({name: 'type', value:elementAttributes.type, type:'select', options:elementTypeList, label:'Field Type'});
+            elementList.push({name: 'type', value:elementAttributes.type, type:'select', options:elementTypeList, label:'Field Type', group:'top'});
             elementList.push({name: 'name', value:elementAttributes.name, label:'Field Label'});
 
             switch (elementAttributes.type) {
@@ -78,9 +86,9 @@ define(['common/app','common/bone', 'common/widgets/form', 'text!../templates/wi
             });
 
             var form = baseUtil.createView({
-                View:Form.View,
+                View:ElementPropertiesForm,
                 model:formModel,
-                parentEl:this.$('.form-container'),
+                parentEl:this.$('.element-properties-form'),
                 replaceHTML:true
             })
 

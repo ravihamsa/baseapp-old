@@ -13,7 +13,8 @@ define(['common/bone', 'common/list/singleSelect', 'text!../templates/widgets/fo
                 itemView:SingleSelect.ItemView
             })
         },
-        actionHandler:function(id){
+        actionHandler:function(id, e){
+            e.actionHandled = true;
             this.model.setSelectedById(id);
         }
     })

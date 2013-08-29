@@ -32,7 +32,9 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
 
         },
         renderTemplate: function (templateFunction) {
-            this.$el.html(templateFunction(this.model.toJSON()));
+            var templateHTML = $(templateFunction(this.model.toJSON()));
+            templateHTML.find('a').addClass(this.cid);
+            this.$el.html(templateHTML);
         },
         loadMeta: function () {
             if (!this.metaDef) {
@@ -222,11 +224,17 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
 
     var setupActionNavigateAnchors = function () {
         var _this = this;
-        _this.$el.on('click', '.action', function (e) {
+        var verifyPropagation = function(e){
+            if(e.actionHandled){
+                e.stopPropagation();
+            }
+        }
+        _this.$el.on('click.'+_this.cid, '.action', function (e) {
             e.preventDefault();
             var target = $(e.currentTarget);
             var action = target.attr('href').substr(1);
-            _this['actionHandler'].call(_this, action);
+            _this.actionHandler.call(_this, action, e);
+            verifyPropagation(e);
         });
 
         _this.$el.on('click', '.dummy', function (e) {
