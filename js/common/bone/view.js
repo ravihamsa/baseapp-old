@@ -50,11 +50,8 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
         actionHandler: function () {
 
         },
-        showLoading:function(){
-            this.$el.addClass('loading');
-        },
-        hideLoading:function(){
-            this.$el.removeClass('loading');
+        loadingHandler:function(isLoading){
+            this.$el.toggleClass('loading', isLoading);
         }
     });
 
@@ -230,7 +227,7 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
                 $('body').trigger('click');
             }
         }
-        _this.$el.on('click.'+_this.cid, '.action', function (e) {
+        _this.$el.on('click', '.action', function (e) {
             e.preventDefault();
             var target = $(e.currentTarget);
             var action = target.attr('href').substr(1);
@@ -258,13 +255,19 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
     var setupMetaRequests = function(){
         var _this = this;
         var requestConfigs = _this.getOption('requests') || _this.requests;
+        var loading = false;
         if(!requestConfigs){
             return;
         }
         var requestQue = util.aSyncQueue(app.makeRequest, 10);
-        requestQue.added = _.bind(_this.showLoading, _this);
-
-        requestQue.drain = _.bind(_this.hideLoading, _this);
+        requestQue.added = function(){
+            loading = true;
+            _this.loadingHandler.call(_this, loading);
+        }
+        requestQue.drain = function(){
+            loading = false;
+            _this.loadingHandler.call(_this, loading);
+        }
 
         requestQue.push(requestConfigs, function(err, data){
             _this.trigger('requestComplete', data);
@@ -273,8 +276,6 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
         _this.getRequestQue = function(){
             return requestQue;
         }
-
-
     }
 
     var setupFunctions = [bindDataEvents, setupTemplateEvents, setupAttributeWatch, setupActionNavigateAnchors, setupOnChangeRender, setupStateEvents, setupMetaRequests];
