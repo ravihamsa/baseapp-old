@@ -79,6 +79,9 @@ a {
   background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e2e3e3));
   background: -moz-linear-gradient(top, #ffffff, #e2e3e3);
 }
+.btn.icon {
+  line-height: 14px;
+}
 .btn.dropdown {
   padding-right: 30px;
 }
@@ -379,7 +382,10 @@ a.draging {
   border-radius: 3px;
   box-shadow: 0 0 1px 1px #EFEFEF;
 }
-.form-vertical .control-group .type-checkbox input {
+.form-vertical .control-group input[type=checkbox],
+.form-vertical .control-group .type-checkbox input,
+.form-vertical .control-group input[type=radio],
+.form-vertical .control-group .type-radio input {
   width: auto;
 }
 .form-vertical .control-group span.help-inline {
@@ -392,4 +398,7 @@ a.draging {
 .form-vertical .focused {
   background-color: #dafed9;
   border-bottom: 1px solid #e9e9e9;
+}
+.options-list .list-view li {
+  margin-bottom: 10px;
 }

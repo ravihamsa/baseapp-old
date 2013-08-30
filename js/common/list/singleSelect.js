@@ -10,7 +10,7 @@ define(['common/bone'], function (Bone) {
                 View:Bone.CollectionView,
                 collection:items,
                 parentEl:this.$('.list-view'),
-                itemView:ItemView
+                itemView:this.getOption('ItemView') || ItemView
             })
         },
         actionHandler:function(selectedId){

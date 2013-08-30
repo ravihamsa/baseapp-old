@@ -52,6 +52,11 @@ define(['common/app', 'common/bone/model', 'common/bone/util'], function (app, B
         },
         loadingHandler:function(isLoading){
             this.$el.toggleClass('loading', isLoading);
+        },
+        addMethod:function(methodName, func){
+            if(!this[methodName]){
+                this[methodName] = func;
+            }
         }
     });
 
