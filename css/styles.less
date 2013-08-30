@@ -114,6 +114,10 @@ a {
   box-shadow: 2px 2px 0px 0px #FFFFFF inset;
   position: relative;
 
+  &:hover{
+    .tb-gradient(#fff, #e2e3e3);
+  }
+
   &.dropdown {
     padding-right: 30px;
 
@@ -383,13 +387,16 @@ a {
         position: absolute;
         top: 10px;
         right: 10px;
-        content: '\25B6'
-
+        content: url('../images/gray-right-arrow.png')
       }
     }
 
     a:hover {
       .tb-gradient(#E9EAEB, #D9DADA);  //#E9EAEB, #D9DADA
+    }
+
+    .active a:after{
+      content: url('../images/blue-right-arrow.png')
     }
 
     .active a,.active a:hover{

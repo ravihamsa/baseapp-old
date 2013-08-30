@@ -75,6 +75,10 @@ a {
   box-shadow: 2px 2px 0px 0px #FFFFFF inset;
   position: relative;
 }
+.btn:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e2e3e3));
+  background: -moz-linear-gradient(top, #ffffff, #e2e3e3);
+}
 .btn.dropdown {
   padding-right: 30px;
 }
@@ -294,11 +298,14 @@ a {
   position: absolute;
   top: 10px;
   right: 10px;
-  content: '\25B6';
+  content: url('../images/gray-right-arrow.png');
 }
 .element-stack .sel-el-list a:hover {
   background: -webkit-gradient(linear, left top, left bottom, from(#e9eaeb), to(#d9dada));
   background: -moz-linear-gradient(top, #e9eaeb, #d9dada);
+}
+.element-stack .sel-el-list .active a:after {
+  content: url('../images/blue-right-arrow.png');
 }
 .element-stack .sel-el-list .active a,
 .element-stack .sel-el-list .active a:hover {
