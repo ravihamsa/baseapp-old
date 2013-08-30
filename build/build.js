@@ -8,7 +8,7 @@
         'text':'libs/requirejs-text-plugin'
     },
     dir: '../dist',
-    optimize: 'none',
+    //optimize: 'none',
     fileExclusionRegExp: /(build|idea)/,
     modules: [
         {
@@ -24,9 +24,9 @@
         },
 
         {
-            name: 'apps/advertiser',
+            name: 'apps/studio',
             include: [
-                'apps/advertiser/app'
+                'apps/studio/app'
             ],
             exclude: ['common']
         },

@@ -157,12 +157,16 @@ define(['common/app', 'common/bone', 'common/widgets/form', 'common/list/singleS
                     elementList.push({name: 'defaultText', value: elementAttributes.defaultText})
                     elementList.push({name: 'required', type: 'checkbox', value: elementAttributes.required})
                     elementList.push({name: 'numberType', type: 'select', value: elementAttributes.numberType, options: [
-                        {id: 'integer', name: 'Integer'},
-                        {id: 'fraction', name: 'Fraction'}
+                        {id: 'unit', name: 'Unit'},
+                        {id: 'currency', name: 'Currency'},
+                        {id: 'price', name: 'Price'}
                     ]})
                     elementList.push({name: 'decimal', type: 'select', value: elementAttributes.decimal, options: [
-                        {id: 1, name: 1},
-                        {id: 2, name: 2}
+                        {id: 'none', name: 'None'},
+                        {id: '1', name: '.0'},
+                        {id: '2', name: '.00'},
+                        {id: '3', name: '.000'},
+                        {id: '4', name: '.0000'}
                     ]})
                     break;
             }
