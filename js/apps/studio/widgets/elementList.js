@@ -19,13 +19,14 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
         },
         startDrag:function(e){
             var target = $(e.target);
+            var targetOffset = target.offset();
+            var difX = targetOffset.left - e.pageX;
+            var difY = targetOffset.top - e.pageY;
             var _this = this;
 
             var isInside = false;
 
             var timeStamp = new Date().getTime();
-            var MOUSE_ENTER = 'mouseenter.'+timeStamp;
-            var MOUSE_LEAVE = 'mouseleave.'+timeStamp;
             var MOUSE_UP =  'mouseup.'+timeStamp;
             var MOUSE_MOVE = 'mousemove.'+timeStamp;
             var BODY = $('body');
@@ -55,8 +56,8 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
 
 
             proxy.css({
-                top: e.clientY,
-                left: e.clientX,
+                top: e.clientY+difY,
+                left: e.clientX+difX,
                 position:'fixed',
                 'z-index':1001,
                 'pointer-events':'none'
@@ -72,8 +73,8 @@ define(['common/bone', 'text!../templates/widgets/elementList.html'], function (
                     isInside = false;
                 }
                 proxy.css({
-                    top: e.clientY,
-                    left: e.clientX
+                    top: e.clientY+difY,
+                    left: e.clientX+difX
                 })
                 BODY.css({
                     cursor:cursor
